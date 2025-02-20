@@ -1,9 +1,9 @@
 
-
+import bannerImg from '../assets/banner/banner.jpg'
 const Home = () => {
     return (
         <div>
-            Home
+            <img className='w-full h-[500px] object-cover' src={bannerImg} alt="" />
         </div>
     );
 };

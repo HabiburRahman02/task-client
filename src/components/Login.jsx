@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
     const { googleLogin } = useContext(AuthContext);
 
     const handleGoogleLogin = () => {
@@ -14,6 +16,7 @@ const Login = () => {
                     name: user?.displayName,
                     email: user?.email
                 }
+                navigate('/')
                 axios.post('http://localhost:5000/users', userInfo)
                     .then(res => {
                         console.log(res.data);
