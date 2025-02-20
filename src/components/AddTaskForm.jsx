@@ -1,7 +1,12 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../provider/AuthProvider';
 
 const AddTaskForm = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('To-Do'); // Default category
@@ -17,14 +22,20 @@ const AddTaskForm = () => {
       title,
       description,
       timestamp: new Date().toISOString(),
-      category
+      category,
+      email: user?.email
     };
     console.log(newTask);
-    axios.post('https://task-server-eight-murex.vercel.app/tasks', newTask)
+    axios.post('http://localhost:5000/tasks', newTask)
       .then(res => {
         console.log(res.data);
         if (res.data.insertedId) {
-          alert('Task added successfully')
+          navigate('/tasks')
+          Swal.fire({
+            title: "Task!",
+            text: "Added Task successfully",
+            icon: "success"
+          });
         }
       })
   };
