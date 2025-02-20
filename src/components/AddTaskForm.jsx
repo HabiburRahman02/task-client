@@ -20,7 +20,7 @@ const AddTaskForm = () => {
       category
     };
     console.log(newTask);
-    axios.post('http://localhost:5000/tasks', newTask)
+    axios.post('https://task-server-eight-murex.vercel.app/tasks', newTask)
       .then(res => {
         console.log(res.data);
         if (res.data.insertedId) {

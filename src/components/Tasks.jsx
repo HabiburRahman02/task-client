@@ -11,7 +11,7 @@ const Tasks = () => {
     const { data: tasks = [], refetch } = useQuery({
         queryKey: ["tasks"],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:5000/tasks");
+            const res = await axios.get("https://task-server-eight-murex.vercel.app/tasks");
             return res.data;
         },
     });
@@ -40,7 +40,7 @@ const Tasks = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/deleteTaskById/${taskId}`)
+                axios.delete(`https://task-server-eight-murex.vercel.app/deleteTaskById/${taskId}`)
                     .then((res) => {
                         refetch();
                         if (res.data.deletedCount > 0) {
@@ -92,7 +92,7 @@ const Tasks = () => {
             setLocalTasks([...otherTasks, ...sourceTasks, ...destinationTasks]);
 
             try {
-                await axios.put(`http://localhost:5000/tasks/${draggableId}`, {
+                await axios.put(`https://task-server-eight-murex.vercel.app/tasks/${draggableId}`, {
                     category: destination.droppableId,
                 });
                 refetch();

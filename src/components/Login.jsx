@@ -17,7 +17,7 @@ const Login = () => {
                     email: user?.email
                 }
                 navigate('/')
-                axios.post('http://localhost:5000/users', userInfo)
+                axios.post('https://task-server-eight-murex.vercel.app/users', userInfo)
                     .then(res => {
                         console.log(res.data);
                     })

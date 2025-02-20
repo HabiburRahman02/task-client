@@ -37,7 +37,7 @@ const router = createBrowserRouter([
       {
         path: '/updateTask/:id',
         element: <UpdateTaskForm></UpdateTaskForm>,
-        loader: ({ params }) => fetch(`http://localhost:5000/getTaskById/${params.id}`)
+        loader: ({ params }) => fetch(`https://task-server-eight-murex.vercel.app/getTaskById/${params.id}`)
       },
     ]
   },
