@@ -30,7 +30,7 @@ const AddTaskForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-base-200 rounded-lg shadow-lg">
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg my-12">
       <h2 className="text-2xl font-bold text-center mb-4">Add New Task</h2>
 
       {/* Title Field */}

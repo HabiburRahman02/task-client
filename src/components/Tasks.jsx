@@ -2,8 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Tasks = () => {
+    const navigate = useNavigate();
+
     const { data: tasks = [], refetch } = useQuery({
         queryKey: ["tasks"],
         queryFn: async () => {
@@ -20,17 +24,36 @@ const Tasks = () => {
 
     const handleUpdate = (taskId) => {
         console.log(`Update task with ID: ${taskId}`);
+        navigate(`/updateTask/${taskId}`)
     };
 
     const handleDelete = (taskId) => {
         console.log(`Delete task with ID: ${taskId}`);
-        axios
-            .delete(`http://localhost:5000/deleteTaskById/${taskId}`)
-            .then((res) => {
-                console.log(res.data);
-                refetch();
-            })
-            .catch((error) => console.error(error));
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axios.delete(`http://localhost:5000/deleteTaskById/${taskId}`)
+                    .then((res) => {
+                        refetch();
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+                    .catch((error) => console.error(error));
+            }
+        });
     };
 
     const onDragEnd = async (result) => {
