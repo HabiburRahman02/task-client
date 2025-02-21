@@ -41,52 +41,52 @@ const AddTaskForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg my-12">
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white dark:bg-gray-950 dark:text-gray-200 rounded-lg shadow-lg my-12">
       <h2 className="text-2xl font-bold text-center mb-4">Add New Task</h2>
 
       {/* Title Field */}
       <div className="form-control mb-4">
         <label className="label">
-          <span className="label-text font-semibold">Title</span>
+          <span className="label-text font-semibold dark:text-gray-200">Title</span>
         </label>
         <input
           type="text"
           placeholder="Task title"
-          className="input input-bordered"
+          className="input input-bordered dark:bg-gray-800"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           maxLength={50}
           required
         />
         <label className="label">
-          <span className="label-text-alt">Maximum 50 characters</span>
+          <span className="label-text-alt dark:text-gray-400">Maximum 50 characters</span>
         </label>
       </div>
 
       {/* Description Field */}
       <div className="form-control mb-4">
         <label className="label">
-          <span className="label-text font-semibold">Description</span>
+          <span className="label-text font-semibold dark:text-gray-200">Description</span>
         </label>
         <textarea
           placeholder="Task description (optional)"
-          className="textarea textarea-bordered"
+          className="textarea textarea-bordered dark:bg-gray-800"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           maxLength={200}
         ></textarea>
         <label className="label">
-          <span className="label-text-alt">Maximum 200 characters</span>
+          <span className="label-text-alt dark:text-gray-400">Maximum 200 characters</span>
         </label>
       </div>
 
       {/* Category Field */}
       <div className="form-control mb-6">
         <label className="label">
-          <span className="label-text font-semibold">Category</span>
+          <span className="label-text font-semibold dark:text-gray-200">Category</span>
         </label>
         <select
-          className="select select-bordered"
+          className="select select-bordered dark:bg-gray-800"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >

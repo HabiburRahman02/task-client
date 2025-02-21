@@ -29,7 +29,7 @@ const Login = () => {
 
     return (
         <div className="mt-20 mx-auto flex items-center justify-center">
-            <button onClick={handleGoogleLogin} className="btn-lg btn max-w-72 border-2">Login With Google</button>
+            <button onClick={handleGoogleLogin} className="btn-lg btn max-w-72 border-2 bg-gray-200 dark:bg-gray-600 dark:text-white">Login With Google</button>
         </div>
     );
 };

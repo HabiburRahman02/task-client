@@ -53,7 +53,7 @@ const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <div className='bg-gray-100 min-h-screen'>
+    <div className='bg-gray-100 min-h-screen dark:bg-gray-800'>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <RouterProvider router={router} ></RouterProvider>

@@ -106,16 +106,16 @@ const Tasks = () => {
     };
 
     const categories = [
-        { name: "To-Do", bgClass: "bg-gray-200" },
-        { name: "In Progress", bgClass: "bg-blue-200" },
-        { name: "Done", bgClass: "bg-green-200" },
+        { name: "To-Do", bgClass: "bg-gray-200 dark:bg-gray-950 dark:text-gray-200" },
+        { name: "In Progress", bgClass: "bg-blue-200 dark:bg-gray-950 dark:text-gray-200" },
+        { name: "Done", bgClass: "bg-green-200 dark:bg-gray-950 dark:text-gray-200" },
     ];
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <div className="p-6 bg-gray-100 min-h-screen">
+            <div className="p-6 bg-gray-100 min-h-screen  dark:bg-gray-800">
                 {/* Heading */}
-                <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
+                <h1 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-gray-200">
                     📝 Task Management Board
                 </h1>
 
@@ -144,12 +144,12 @@ const Tasks = () => {
                                                         ref={provided.innerRef}
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
-                                                        className="bg-white p-4 my-3 rounded-lg shadow-md transition duration-300 hover:shadow-xl"
+                                                        className="bg-white dark:bg-gray-800 dark:text-gray-200 p-4 my-3 rounded-lg shadow-md transition duration-300 hover:shadow-xl"
                                                     >
                                                         {/* Task Title */}
-                                                        <h3 className="font-semibold text-gray-800">{task.title}</h3>
+                                                        <h3 className="font-semibold text-gray-800 dark:text-gray-200">{task.title}</h3>
                                                         {/* Task Description */}
-                                                        <p className="text-gray-600 text-sm">{task.description}</p>
+                                                        <p className="text-gray-600 text-sm dark:text-gray-200">{task.description}</p>
 
                                                         {/* Action Buttons */}
                                                         <div className="flex justify-end space-x-2 mt-3">

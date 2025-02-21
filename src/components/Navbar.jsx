@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
@@ -6,6 +6,20 @@ import Swal from "sweetalert2";
 const Navbar = () => {
     const navigate = useNavigate();
     const { user, logout } = useContext(AuthContext);
+
+    const [darkMode, setDarkMode] = useState(
+        localStorage.getItem("theme") === "dark"
+    );
+
+    useEffect(() => {
+        if (darkMode) {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("theme", "light");
+        }
+    }, [darkMode]);
 
     const handleLogout = () => {
         logout()
@@ -20,11 +34,13 @@ const Navbar = () => {
     }
 
     return (
-        <div className="bg-blue-700 text-white py-4">
+        <div className="bg-blue-700 text-white py-4 px-2">
             <div className="container mx-auto flex justify-between items-center">
-                <Link to={'/'}>
-                    <h3 className="font-bold text-2xl">Task<span className="text-orange-200">s</span></h3>
-                </Link>
+                <div>
+                    <Link to={'/'}>
+                        <h3 className="font-bold text-2xl">Task<span className="text-orange-200">s</span></h3>
+                    </Link>
+                </div>
                 {
                     user ?
                         <>
@@ -45,12 +61,22 @@ const Navbar = () => {
                                     </NavLink>
                                 </li>
                             </ul>
-                            <button onClick={handleLogout} className="btn btn-outline text-white">Logout</button>
+                            <div className="flex items-center gap-1">
+                                <input
+                                    onClick={() => setDarkMode(!darkMode)}
+                                    type="checkbox" className="toggle" defaultChecked />
+                                <button onClick={handleLogout} className="btn btn-outline text-white">Logout</button>
+                            </div>
                         </>
                         :
-                        <Link to={'/login'}>
-                            <button className="btn btn-secondary">Login</button>
-                        </Link>
+                        <div className="flex items-center gap-1">
+                            <input
+                                onClick={() => setDarkMode(!darkMode)}
+                                type="checkbox" className="toggle" defaultChecked />
+                            <Link to={'/login'}>
+                                <button className="btn btn-secondary">Login</button>
+                            </Link>
+                        </div>
                 }
             </div>
         </div>
