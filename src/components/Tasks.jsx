@@ -12,7 +12,7 @@ const Tasks = () => {
     const { user } = useContext(AuthContext)
 
     const { data: tasks = [], refetch } = useQuery({
-        queryKey: ["tasks"],
+        queryKey: ["tasks", user?.email],
         queryFn: async () => {
             const res = await axios.get(`https://task-server-eight-murex.vercel.app/tasksByEmail?email=${user?.email}`);
             return res.data;
