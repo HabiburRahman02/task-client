@@ -32,7 +32,7 @@ const UpdateTaskForm = () => {
         console.log(updatedTask);
 
         // API call for updating task
-        axios.patch(`http://localhost:5000/taskUpdateById/${data._id}`, updatedTask)
+        axios.patch(`https://task-server-eight-murex.vercel.app/taskUpdateById/${data._id}`, updatedTask)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
